@@ -1,0 +1,8 @@
+# tasks file for ansible
+---
+- name: install
+  pip:
+    name: "{{ item }}"
+    state: latest
+  with_items: ansible_dependencies
+  tags: [configuration, ansible, ansible-install]
