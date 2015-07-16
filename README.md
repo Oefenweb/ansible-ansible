@@ -11,7 +11,7 @@ Set up (the latest version of) Ansible in Debian-like systems.
 
 #### Variables
 
-* `ansible_version`: [default: `latest`]: Ansible version to install (e.g. `latest`, `1.9.2`)
+* `ansible_ansible_version`: [default: `latest`]: Ansible version to install (e.g. `latest`, `1.9.2`)
 
 ## Dependencies
 
