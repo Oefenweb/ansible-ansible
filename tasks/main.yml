@@ -1,8 +1,15 @@
 # tasks file for ansible
 ---
-- name: install
+- name: install ansible (specific version)
   pip:
-    name: "{{ item }}"
-    state: latest
-  with_items: ansible_dependencies
+    name: ansible
+    version: "{{ ansible_version }}"
+  when: "ansible_version != 'latest'"
+  tags: [configuration, ansible, ansible-install]
+
+- name: install ansible (latest version)
+  pip:
+    name: ansible
+    state: "{{ ansible_version }}"
+  when: "ansible_version == 'latest'"
   tags: [configuration, ansible, ansible-install]

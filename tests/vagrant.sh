@@ -19,7 +19,7 @@ alias apt-update='apt-get update -qq';
 alias apt-install='apt-get install -q -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold"';
 
 apt-update;
-apt-install python-pip;
+apt-install python-dev python-pip;
 
 sudo pip install -U pip;
 
