@@ -1,0 +1,88 @@
+---
+language: python
+python: "2.7"
+
+env:
+  - ANSIBLE_VERSION=latest
+  - ANSIBLE_VERSION=1.9.2
+  - ANSIBLE_VERSION=1.9.1
+  - ANSIBLE_VERSION=1.9.0.1
+  - ANSIBLE_VERSION=1.8.4
+  - ANSIBLE_VERSION=1.8.3
+  - ANSIBLE_VERSION=1.8.2
+  - ANSIBLE_VERSION=1.8.1
+  - ANSIBLE_VERSION=1.8
+  - ANSIBLE_VERSION=1.7.2
+  - ANSIBLE_VERSION=1.7.1
+  - ANSIBLE_VERSION=1.7
+  - ANSIBLE_VERSION=1.6.9
+  - ANSIBLE_VERSION=1.6.8
+  - ANSIBLE_VERSION=1.6.7
+  - ANSIBLE_VERSION=1.6.6
+  - ANSIBLE_VERSION=1.6.5
+  - ANSIBLE_VERSION=1.6.4
+  - ANSIBLE_VERSION=1.6.3
+  - ANSIBLE_VERSION=1.6.2
+  - ANSIBLE_VERSION=1.6.10
+  - ANSIBLE_VERSION=1.6.1
+  - ANSIBLE_VERSION=1.6
+  - ANSIBLE_VERSION=1.5.5
+  - ANSIBLE_VERSION=1.5.4
+  - ANSIBLE_VERSION=1.5.3
+  - ANSIBLE_VERSION=1.5.2
+  - ANSIBLE_VERSION=1.5.1
+  - ANSIBLE_VERSION=1.5
+  - ANSIBLE_VERSION=1.4.5
+  - ANSIBLE_VERSION=1.4.4
+  - ANSIBLE_VERSION=1.4.3
+  - ANSIBLE_VERSION=1.4.2
+  - ANSIBLE_VERSION=1.4.1
+  - ANSIBLE_VERSION=1.4
+
+branches:
+  only:
+    - master
+
+matrix:
+  allow_failures:
+    # Idempotency test fails
+    - env: ANSIBLE_VERSION=1.4.3
+    - env: ANSIBLE_VERSION=1.4.2
+    - env: ANSIBLE_VERSION=1.4.1
+    - env: ANSIBLE_VERSION=1.4
+
+before_install:
+  - sudo apt-get update -qq
+
+  # Remove ansible
+  - sudo apt-get remove --purge ansible
+
+  # Update pip to the latest version.
+  - sudo pip install -U pip
+
+install:
+  # Install Ansible.
+  - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install ansible; else pip install ansible==$ANSIBLE_VERSION; fi
+
+  # Add ansible.cfg to pick up roles path.
+  - printf "[defaults]\nroles_path = ../" > ansible.cfg
+
+script:
+  # Check the role/playbook's syntax.
+  - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
+
+  # Run the role/playbook with ansible-playbook.
+  - ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo -vvvv
+
+  # Run the role/playbook again, checking to make sure it's idempotent.
+  - >
+    ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo
+    | grep -q 'changed=0.*failed=0'
+    && (echo 'Idempotence test: pass' && exit 0)
+    || (echo 'Idempotence test: fail' && exit 1)
+
+notifications:
+  email: false
+  hipchat:
+    rooms:
+      secure: hj0zE3G9bvDoAp61s9YNwbLyNS1IVuQzOvXeKqQAH2vqpKKKVcozeORB/vbBH8H9hWrGnku7Vr3hkmrCiYEpHh0Or8f6TvXcJHLQbEfGQ0x6k1jpGeJvnNKV4HHKYFkVY4SGE8m1EJ2s+S24sTR2doi43LDUsotaHyaj5NrSGSS/rqofK8BURSKSiUGFHdrdv2C1Nf2sJW9ocHZgXInfHCB3zWW6rXEnE4cRCIslNOUFGVJsS9TKrIxg0LBS6aAdm6jd4qi0qqZkRIUcHP5j/rWqmBUbZG27TYEz5l2UDlSnJ5MdI0vfm0M/zvkVjDXZSZGPW6HytdT+h/o5kZKOM9v/06pmhkNJWEoRvu9DqYuFzsQ/rG0nwhPvBjr/V8OMbOPflXGVuCqaTy8mjIJY137BqDkltiioDra9RdvKmvhKWsKj3EgvSIqcSWsKG3SwyHau0tXFNFl/jArERY2ofi3mEZCTBLG5MSWeOnrKq1HGsgM5hprQKtFr8RkY9vhG4SGqhmMkCGya8TyNKFOR1ARanCZ2daLefhQg+Bz/d8VtwAIhQ/WTKFdArJDkuXsA07sW/Cp4DTxb5nk6uyfS1y+K5JTPyWM6eyZBzxj+a6OJ1uv5MxNqCSq1mutKJRwjXUWBBdfsMxAJwWD9CRc5H1UoHb3uOgWRrKNQvNh5lfg=
