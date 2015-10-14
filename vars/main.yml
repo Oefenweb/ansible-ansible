@@ -1,4 +1,6 @@
 # vars file for ansible
 ---
 ansible_dependencies:
-  - ansible
+  - python
+  - python-dev
+  - build-essential

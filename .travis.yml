@@ -59,9 +59,6 @@ before_install:
   # Remove ansible
   - sudo apt-get remove --purge ansible
 
-  # Update pip to the latest version.
-  - sudo pip install -U pip
-
 install:
   # Install Ansible.
   - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install ansible; else pip install ansible==$ANSIBLE_VERSION; fi

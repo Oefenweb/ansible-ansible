@@ -4,27 +4,6 @@
   remote_user: vagrant
   sudo: true
   pre_tasks:
-    - name: install dependencies
-      apt:
-        name: "{{ item }}"
-        state: latest
-        update_cache: true
-        cache_valid_time: 3600
-      with_items:
-        - python
-        - python-dev
-        - curl
-      tags:
-        - configuration
-        - ansible
-        - ansible-dependencies
-    - name: update pip
-      shell: "curl -sL https://bootstrap.pypa.io/get-pip.py | python -"
-      args:
-        creates: /usr/local/bin/pip
-      tags:
-        - configuration
-        - ansible
-        - ansible-update-pip
+    - include: pre.yml
   roles:
     - ../../
