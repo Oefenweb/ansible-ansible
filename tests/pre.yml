@@ -9,12 +9,7 @@
   with_items:
     - python
     - curl
+
 - name: pre | install pip
   shell: "curl -sL https://bootstrap.pypa.io/get-pip.py | python -"
-  args:
-    creates: /usr/local/bin/pip
-
-- name: pre | upgrade pip
-  pip:
-    name: pip
-    state: latest
+  changed_when: false
