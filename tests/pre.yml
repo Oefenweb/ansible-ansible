@@ -7,6 +7,7 @@
     update_cache: true
     cache_valid_time: 3600
   with_items:
+    - python
     - curl
 - name: pre | update pip
   shell: "curl -sL https://bootstrap.pypa.io/get-pip.py | python -"
