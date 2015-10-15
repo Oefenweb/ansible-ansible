@@ -7,7 +7,10 @@ Set up (the latest version of) Ansible in Debian-like systems.
 #### Requirements
 
 * `pip` (will not installed)
-* `python-dev` (will not installed)
+
+* `python` (will be installed)
+* `python-dev` (will be installed)
+* `build-essential` (will be installed)
 
 #### Variables
 
