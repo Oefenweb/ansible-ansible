@@ -15,5 +15,10 @@
   changed_when: false
 
 - name: pre | install pip
-  shell: "curl -sL https://bootstrap.pypa.io/get-pip.py | python -"
-  changed_when: false
+  easy_install:
+    name: pip
+
+- name: pre | update pip
+  pip:
+    name: pip
+    state: latest
