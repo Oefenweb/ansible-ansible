@@ -22,8 +22,8 @@ None
 
 ## Recommended
 
-* `ansible-pip` ([see](https://github.com/Oefenweb/ansible-pip)
-* `ansible-virtualenv` ([see](https://github.com/Oefenweb/ansible-virtualenv)
+* `ansible-pip` ([see](https://github.com/Oefenweb/ansible-pip))
+* `ansible-virtualenv` ([see](https://github.com/Oefenweb/ansible-virtualenv))
 
 #### Example
 
