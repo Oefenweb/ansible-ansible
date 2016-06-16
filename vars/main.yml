@@ -4,3 +4,4 @@ ansible_dependencies:
   - python
   - python-dev
   - build-essential
+  - libffi-dev

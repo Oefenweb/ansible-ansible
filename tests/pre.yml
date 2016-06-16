@@ -9,9 +9,11 @@
   with_items:
     - python
     - curl
+    - libffi-dev
 
 - name: pre | install setuptools
-  shell: "curl -sL https://bootstrap.pypa.io/ez_setup.py | python -"
+  shell: >
+    curl -sL https://bootstrap.pypa.io/ez_setup.py | python -
   changed_when: false
 
 - name: pre | install pip

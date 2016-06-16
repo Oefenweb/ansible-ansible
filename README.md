@@ -11,6 +11,7 @@ Set up (the latest version of) Ansible in Debian-like systems.
 * `python` (will be installed)
 * `python-dev` (will be installed)
 * `build-essential` (will be installed)
+* `libffi-dev` (will be installed)
 
 #### Variables
 
