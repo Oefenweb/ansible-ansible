@@ -5,3 +5,4 @@ ansible_dependencies:
   - python-dev
   - build-essential
   - libffi-dev
+  - libssl-dev
