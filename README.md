@@ -1,6 +1,6 @@
 ## ansible
 
-[![Build Status](https://travis-ci.org/Oefenweb/ansible-ansible.svg?branch=master)](https://travis-ci.org/Oefenweb/ansible-ansible) [![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-ansible-blue.svg)](https://galaxy.ansible.com/tersmitten/ansible)
+[![Build Status](https://travis-ci.org/Oefenweb/ansible-ansible.svg?branch=master)](https://travis-ci.org/Oefenweb/ansible-ansible) [![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-ansible-blue.svg)](https://galaxy.ansible.com/Oefenweb/ansible)
 
 Set up (the latest version of) Ansible in Debian-like systems.
 
