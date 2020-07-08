@@ -1,21 +1,22 @@
 ## ansible
 
-[![Build Status](https://travis-ci.org/Oefenweb/ansible-ansible.svg?branch=master)](https://travis-ci.org/Oefenweb/ansible-ansible) [![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-ansible-blue.svg)](https://galaxy.ansible.com/Oefenweb/ansible)
+[![Build Status](https://travis-ci.org/Oefenweb/ansible-ansible.svg?branch=master)](https://travis-ci.org/Oefenweb/ansible-ansible)
+[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-ansible-blue.svg)](https://galaxy.ansible.com/Oefenweb/ansible)
 
 Set up (the latest version of) Ansible in Debian-like systems.
 
 #### Requirements
 
 * `pip` (will not installed)
-
-* `python` (will be installed)
-* `python-dev` (will be installed)
+* `python(2|3)` (will be installed)
+* `python-dev(2|3)` (will be installed)
 * `build-essential` (will be installed)
 * `libffi-dev` (will be installed)
 * `libssl-dev` (will be installed)
 
 #### Variables
 
+* `ansible_python_version` [default: `2`]: Python version to install `ansible` for.
 * `ansible_ansible_version`: [default: `latest`]: Ansible version to install (e.g. `latest`, `1.9.2`)
 
 ## Dependencies

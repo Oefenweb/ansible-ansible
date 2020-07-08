@@ -1,8 +1,8 @@
 # vars file for ansible
 ---
 ansible_dependencies:
-  - python
-  - python-dev
+  - "python{{ ansible_python_version is version('3', '>=') | ternary('3', '') }}"
+  - "python{{ ansible_python_version is version('3', '>=') | ternary('3', '') }}-dev"
   - build-essential
   - libffi-dev
   - libssl-dev

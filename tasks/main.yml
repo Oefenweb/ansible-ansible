@@ -16,6 +16,7 @@
   pip:
     name: ansible
     version: "{{ ansible_ansible_version }}"
+    executable: "pip{{ ansible_python_version | string }}"
   when: "ansible_ansible_version != 'latest'"
   tags:
     - configuration
@@ -27,6 +28,7 @@
   pip:
     name: ansible
     state: "{{ ansible_ansible_version }}"
+    executable: "pip{{ ansible_python_version | string }}"
   when: "ansible_ansible_version == 'latest'"
   tags:
     - configuration
