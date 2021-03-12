@@ -16,7 +16,7 @@
   pip:
     name: ansible
     version: "{{ ansible_ansible_version }}"
-    executable: "pip{{ ansible_python_version | string }}"
+    executable: "{{ ansible_pip_executable }}"
   when: "ansible_ansible_version != 'latest'"
   tags:
     - configuration
@@ -28,10 +28,20 @@
   pip:
     name: ansible
     state: "{{ ansible_ansible_version }}"
-    executable: "pip{{ ansible_python_version | string }}"
+    executable: "{{ ansible_pip_executable }}"
   when: "ansible_ansible_version == 'latest'"
   tags:
     - configuration
     - ansible
     - ansible-install
     - ansible-install-latest
+
+- name: verify
+  command: >
+    ansible --version
+  changed_when: false
+  tags:
+    - configuration
+    - ansible
+    - ansible-install
+    - ansible-install-verify

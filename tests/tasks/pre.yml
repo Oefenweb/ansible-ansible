@@ -1,0 +1,25 @@
+# pre test file for ansible
+---
+- name: install dependencies
+  apt:
+    name:
+      - "python{{ ansible_python_version_major is version('3', '>=') | ternary('3', '') }}"
+      - curl
+    state: "{{ apt_install_state | default('latest') }}"
+    update_cache: true
+    cache_valid_time: "{{ apt_update_cache_valid_time | default(3600) }}"
+
+- name: install pip
+  shell: >
+    curl -sL {{ ansible_get_pip_url }} | python{{ ansible_python_version_major | string }} -
+  args:
+    warn: false
+  changed_when: false
+  tags:
+    - skip_ansible_lint
+
+- name: remove ansible
+  pip:
+    name: ansible
+    executable: "{{ ansible_pip_executable }}"
+    state: absent
