@@ -1,4 +1,4 @@
-# pre test file for ansible
+# pre test file
 ---
 - name: install dependencies
   apt:
