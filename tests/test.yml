@@ -15,4 +15,4 @@
   roles:
     - ../../
 #  vars:
-#    ansible_python_version: 3
+#    ansible_python_version_major: 3
