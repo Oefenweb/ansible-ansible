@@ -34,7 +34,7 @@ None
 ---
 - hosts: all
   roles:
-    - ansible
+    - oefenweb.ansible
 ```
 
 #### License
