@@ -12,8 +12,8 @@
 - name: pre | install pip  # noqa command-instead-of-module
   ansible.builtin.shell: >
     curl -sL {{ ansible_get_pip_url }} | python{{ ansible_python_version_major | string }} -
-  when: (ansible_distribution == 'Ubuntu' and ansible_distribution_version is version('24.04', '<')) or
-        (ansible_distribution == 'Debian')
+  when: (ansible_facts['distribution'] == 'Ubuntu' and ansible_facts['distribution_version'] is version('24.04', '<')) or
+        (ansible_facts['distribution'] == 'Debian')
   changed_when: false
   tags:
     - skip_ansible_lint
